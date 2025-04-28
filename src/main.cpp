@@ -60,8 +60,8 @@ void loop() {
     http.addHeader("Content-Type", "application/json");
     
     // Crear el JSON con los datos del sensor usando ArduinoJson
-    StaticJsonDocument<256> doc;
-    doc["sensorId"] = 4;
+    StaticJsonDocument<256> doc; 
+    doc["sensorId"] = getMacAddress() ;
     doc["voltaje"] = voltaje;
     doc["corriente"] = corriente;
     doc["potencia"] = potencia;
