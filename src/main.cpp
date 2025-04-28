@@ -11,7 +11,7 @@ char password[] = "Soporte01"; // Cambiado de const char* a char[]
 const char* serverUrl = "https://powertrack-bend.up.railway.app/sensor/measurements";
 
 // Variables para los valores del sensor
-float voltaje = 220.5;
+float voltaje = 110.2;
 float corriente = 2.1;
 float potencia = 462.0;
 float factor_potencia = 0.95;
@@ -61,7 +61,7 @@ void loop() {
     
     // Crear el JSON con los datos del sensor usando ArduinoJson
     StaticJsonDocument<256> doc;
-    doc["sensorId"] = getMacAddress();
+    doc["sensorId"] = 4;
     doc["voltaje"] = voltaje;
     doc["corriente"] = corriente;
     doc["potencia"] = potencia;
