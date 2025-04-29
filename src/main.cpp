@@ -4,8 +4,8 @@
 #include <ArduinoJson.h>
 
 // Configuración WiFi - Reemplaza con tus credenciales
-char ssid[] = "Motomami";        // Cambiado de const char* a char[]
-char password[] = "Soporte01"; // Cambiado de const char* a char[]
+char ssid[] = "F401";        // Cambiado de const char* a char[]
+char password[] = "MSICU2025"; // Cambiado de const char* a char[]
 
 // URL del servidor donde enviarás el POST
 const char* serverUrl = "https://powertrack-bend.up.railway.app/sensor/measurements";
@@ -61,13 +61,15 @@ void loop() {
     
     // Crear el JSON con los datos del sensor usando ArduinoJson
     StaticJsonDocument<256> doc; 
-    doc["sensorId"] = getMacAddress() ;
+    doc["mac_address"] = getMacAddress() ;
     doc["voltaje"] = voltaje;
     doc["corriente"] = corriente;
     doc["potencia"] = potencia;
     doc["factor_potencia"] = factor_potencia;
     doc["energia"] = energia;
     doc["frecuencia"] = frecuencia;
+
+    
     
     // Serializar el JSON a String
     String requestBody;
@@ -75,7 +77,8 @@ void loop() {
     
     // Enviar la petición POST
     int httpResponseCode = http.POST(requestBody);
-    
+   // Serial.println(requestBody);
+
     // Comprobar respuesta
     if (httpResponseCode > 0) {
       String response = http.getString();
