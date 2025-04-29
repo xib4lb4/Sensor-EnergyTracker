@@ -57,8 +57,8 @@ void setup() {
 
 void loop() {
   // Leer los datos del sensor
-  Serial.print("Custom Address:");
-  Serial.println(pzem.readAddress(), HEX);
+  //Serial.print("Custom Address:");
+  //Serial.println(pzem.readAddress(), HEX);
 
   voltaje = pzem.voltage();
   corriente = pzem.current();
@@ -79,14 +79,15 @@ void loop() {
     Serial.println("Error reading frequency");
   } else if (isnan(factor_potencia)) {
     Serial.println("Error reading power factor");
-  } else {
-    Serial.print("Voltage: "); Serial.print(voltaje); Serial.println("V");
-    Serial.print("Current: "); Serial.print(corriente); Serial.println("A");
-    Serial.print("Power: "); Serial.print(potencia); Serial.println("W");
-    Serial.print("Energy: "); Serial.print(energia,3); Serial.println("kWh");
-    Serial.print("Frequency: "); Serial.print(frecuencia,1); Serial.println("Hz");
-    Serial.print("PF: "); Serial.println(factor_potencia);
-  }
+  } 
+  // else {
+    // Serial.print("Voltage: "); Serial.print(voltaje); Serial.println("V");
+    // Serial.print("Current: "); Serial.print(corriente); Serial.println("A");
+    // Serial.print("Power: "); Serial.print(potencia); Serial.println("W");
+    // Serial.print("Energy: "); Serial.print(energia,3); Serial.println("kWh");
+    // Serial.print("Frequency: "); Serial.print(frecuencia,1); Serial.println("Hz");
+    // Serial.print("PF: "); Serial.println(factor_potencia);
+  // }
 
   Serial.println();
 
@@ -111,7 +112,7 @@ void loop() {
     serializeJson(doc, requestBody);
 
     int httpResponseCode = http.POST(requestBody);
-    Serial.println(requestBody);
+    //Serial.println(requestBody);
 
     if (httpResponseCode > 0) {
       String response = http.getString();
